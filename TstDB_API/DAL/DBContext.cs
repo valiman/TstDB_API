@@ -16,8 +16,9 @@ namespace TstDB_API.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<User>().HasMany<Auction>(c => c.Auctions).WithRequired(c => c.User).WillCascadeOnDelete(true); //add key here.
+            //Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = false;
+            //modelBuilder.Entity<User>().HasMany<Auction>(c => c.Auctions).WithRequired(c => c.User).WillCascadeOnDelete(true); //add key here.
         }
     }
 }

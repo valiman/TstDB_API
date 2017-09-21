@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Web;
 
-namespace TstDB_API.Models
+namespace TstDB_API.Dto
 {
-    public class Auction
+    public class DtoAuction
     {
-        [Key]
         public int id { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
         public double bidPrice { get; set; }
         public double buyoutPrice { get; set; }
-        public User User { get; set; }
+        public DtoUser User { get; set; }
     }
 }
