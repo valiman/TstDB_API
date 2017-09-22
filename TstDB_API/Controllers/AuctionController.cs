@@ -32,7 +32,5 @@ namespace TstDB_API.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, users);
         }
-
-
     }
 }

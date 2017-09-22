@@ -10,6 +10,7 @@ namespace TstDB_API.Dto
         public int id { get; set; }
         public DateTime creationDate { get; set; }
         public string name { get; set; }
-        public List<DtoAuction> Auctions = new List<DtoAuction>();
+        //internal get to avoid "circular reference"
+        public List<DtoAuction> Auctions { internal get; set; } = new List<DtoAuction>();
     }
 }

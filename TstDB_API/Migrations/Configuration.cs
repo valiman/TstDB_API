@@ -11,7 +11,10 @@ namespace TstDB_API.Migrations
     {
         public Configuration()
         {
+
+            //not recommended for web app.. alltho this will be used for an API.. interesting.
             AutomaticMigrationsEnabled = true;
+            
         }
 
         protected override void Seed(TstDB_API.DAL.DBContext context)

@@ -12,7 +12,7 @@ namespace TstDB_API.App_Start
         public MappingProfile()
         {
             //Domain to dto
-            CreateMap<Auction, Dto.DtoAuction>().ForMember(o => o.User, opt => opt.Ignore());
+            CreateMap<Auction, Dto.DtoAuction>();
             CreateMap<User, Dto.DtoUser>();
         }
     }
