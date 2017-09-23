@@ -12,8 +12,8 @@ namespace TstDB_API.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false, identity: true),
-                        StartDate = c.DateTime(nullable: false),
-                        EndDate = c.DateTime(nullable: false),
+                        StartDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        EndDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         BidPrice = c.Double(nullable: false),
                         BuyoutPrice = c.Double(nullable: false),
                         User_Id = c.Guid(),
@@ -27,7 +27,7 @@ namespace TstDB_API.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false, identity: true),
-                        CreationDate = c.DateTime(nullable: false),
+                        CreationDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);

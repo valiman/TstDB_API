@@ -13,7 +13,9 @@ namespace TstDB_API.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Guid Id { get; set; }
+        [Column(TypeName = "datetime2")]
         public DateTime StartDate { get; set; }
+        [Column(TypeName = "datetime2")]
         public DateTime EndDate { get; set; }
         public double BidPrice { get; set; }
         public double BuyoutPrice { get; set; }

@@ -13,6 +13,7 @@ namespace TstDB_API.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Guid Id { get; set; }
+        [Column(TypeName = "datetime2")]
         public DateTime CreationDate { get; set; }
         public string Name { get; set; }
         public virtual List<Auction> Auctions { get; set; }
