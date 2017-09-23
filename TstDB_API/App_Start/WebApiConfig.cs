@@ -12,22 +12,8 @@ namespace TstDB_API
     {
         public static void Register(HttpConfiguration config)
         {
-            /*
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Re‌​ferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            // Web API configuration and services
-            
-            var settings = config.Formatters.JsonFormatter.SerializerSettings;
-            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            settings.Formatting = Formatting.Indented;
-            
-            config.Formatters.JsonFormatter.SupportedMediaTypes
-                .Add(new MediaTypeHeaderValue("text/html"));
-            */ 
-
-
             // Web API routes
             config.MapHttpAttributeRoutes();
-
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

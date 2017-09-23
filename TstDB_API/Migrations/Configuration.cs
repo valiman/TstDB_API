@@ -19,72 +19,37 @@ namespace TstDB_API.Migrations
 
         protected override void Seed(TstDB_API.DAL.DBContext context)
         {
-            /*
-            var userA = new User()
-            {   //Dont add auctions at create.. obviously :p
-                name = "KniX",
-                creationDate = DateTime.Now
-            };
-
-            var userB = new User()
-            {   //Dont add auctions at create.. obviously :p
-                name = "isSoCool",
-                creationDate = DateTime.Now
-            };
-
-            var auctA = new Auction()
-            {
-                bidPrice = 8,
-                buyoutPrice = 9,
-                startDate = DateTime.Now,
-                endDate = DateTime.Now.AddYears(1),
-                User = userA
-            };
-
-            var auctB = new Auction()
-            {
-                bidPrice = 8,
-                buyoutPrice = 9,
-                startDate = DateTime.Now,
-                endDate = DateTime.Now.AddYears(1),
-                User = userB
-            };
-
-            //context.Auction.AddOrUpdate(auctA);
-            //context.Auction.AddOrUpdate(auctB);
-            */
-
             //same as above, ms style :)
-            context.User.AddOrUpdate(o => o.name,
+            context.User.AddOrUpdate(o => o.Name,
                 new User
                 {
-                    name = "KniX",
-                    creationDate = DateTime.Now,
+                    Name = "KniX",
+                    CreationDate = DateTime.Now,
                     Auctions = new List<Auction>()
                     {
                        new Auction()
                         {
-                            bidPrice = 8,
-                            buyoutPrice = 9,
-                            startDate = DateTime.Now,
-                            endDate = DateTime.Now.AddYears(1)
+                            BidPrice = 8,
+                            BuyoutPrice = 9,
+                            StartDate = DateTime.Now,
+                            EndDate = DateTime.Now.AddYears(1)
                         }
                     }
                 });
 
-            context.User.AddOrUpdate(o => o.name,
+            context.User.AddOrUpdate(o => o.Name,
                 new User
                 {
-                    name = "isSoCool",
-                    creationDate = DateTime.Now,
+                    Name = "isSoCool",
+                    CreationDate = DateTime.Now,
                     Auctions = new List<Auction>()
                     {
                        new Auction()
                         {
-                            bidPrice = 8,
-                            buyoutPrice = 9,
-                            startDate = DateTime.Now,
-                            endDate = DateTime.Now.AddYears(1)
+                            BuyoutPrice = 8,
+                            BidPrice = 9,
+                            StartDate = DateTime.Now,
+                            EndDate = DateTime.Now.AddYears(1)
                         }
                     }
                 });

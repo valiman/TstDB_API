@@ -11,9 +11,8 @@ namespace TstDB_API.App_Start
     {
         public MappingProfile()
         {
-            //Domain to dto
-            CreateMap<Auction, Dto.DtoAuction>();
-            CreateMap<User, Dto.DtoUser>();
+            CreateMap<Auction, Dto.AuctionDTO>();//.ForMember(o => o.DtoUser, opt => opt.MapFrom(src => src.User));
+            CreateMap<User, Dto.UserDTO>();
         }
     }
 }

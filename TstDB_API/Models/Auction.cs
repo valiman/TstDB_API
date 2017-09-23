@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
@@ -9,12 +10,13 @@ namespace TstDB_API.Models
 {
     public class Auction
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int id { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public double bidPrice { get; set; }
-        public double buyoutPrice { get; set; }
+        public Guid Id { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public double BidPrice { get; set; }
+        public double BuyoutPrice { get; set; }
         public User User { get; set; }
     }
 }
