@@ -13,3 +13,6 @@ Database &amp; API service for StreamAuctioneer
 
 ### Oauth:
     OWIN middleware component that handles the details of OAuth2
+
+### Note: 
+    (HTTP Response) You must use HTTPS to provide transport layer security.
