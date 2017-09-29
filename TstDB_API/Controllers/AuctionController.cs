@@ -39,7 +39,6 @@ namespace TstDB_API.Controllers
         }
 
         //These post calls have to be token-authenticated.
-        [HttpPost]
         [Route("api/Auction/CreateAuction")]
         public HttpResponseMessage CreateAuction([FromBody]JObject data)
         {
@@ -53,7 +52,7 @@ namespace TstDB_API.Controllers
             }
 
             //get real user
-            var _dbUser = dbC.User.FirstOrDefault(o => o.Id == _user.Id);
+            var _dbUser = dbC.User.FirstOrDefault(o => o.Id_IdentityUser == _user.Id_IdentityUser);
             
             //set real user w/ real data
             _auction.User = _dbUser;

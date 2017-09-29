@@ -13,7 +13,7 @@ namespace TstDB_API.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201709231853336_Initial"; }
+            get { return "201709291332311_Initial"; }
         }
         
         string IMigrationMetadata.Source

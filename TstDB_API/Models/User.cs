@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,12 +12,10 @@ namespace TstDB_API.Models
 {
     public class User
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid Id { get; set; }
+        public string Id_IdentityUser { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime CreationDate { get; set; }
-        public string Name { get; set; }
         public virtual List<Auction> Auctions { get; set; }
     }
 }
