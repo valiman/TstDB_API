@@ -19,28 +19,28 @@ namespace TstDB_API.Controllers
 
         //Returns auctions only.
         [Route("api/Auction/GetAuctions")]
-        public HttpResponseMessage GetAuctions()
+        public IHttpActionResult GetAuctions()
         {
             var auctions = dbC.Auction
                 .Include(o => o.User)
                 .Select(Mapper.Map<Auction, Dto.AuctionDTO>)
                 .ToList();
 
-            return Request.CreateResponse(HttpStatusCode.OK, auctions);
+            return Ok(auctions);
         }
 
         //Returns users & auctions.
         [Route("api/Auction/GetUsers")]
-        public HttpResponseMessage GetUsers()
+        public IHttpActionResult GetUsers()
         {
             var users = dbC.User.Select(Mapper.Map<User, Dto.UserDTO>).ToList();
 
-            return Request.CreateResponse(HttpStatusCode.OK, users);
+            return Ok(users);
         }
 
         //These post calls have to be token-authenticated.
         [Route("api/Auction/CreateAuction")]
-        public HttpResponseMessage CreateAuction([FromBody]JObject data)
+        public IHttpActionResult CreateAuction([FromBody]JObject data)
         {
             User _user = data["User"].ToObject<User>();
             Auction _auction = data["Auction"].ToObject<Auction>();
@@ -48,12 +48,19 @@ namespace TstDB_API.Controllers
             //check if either object is null
             if (_user == null || _auction == null)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                var message = "Either user or auction is missing.";
+                return BadRequest(message);
             }
 
             //get real user
             var _dbUser = dbC.User.FirstOrDefault(o => o.Id_IdentityUser == _user.Id_IdentityUser);
-            
+
+            if (_dbUser == null)
+            {
+                var message = "User identity could not be found.";
+                return BadRequest(message);
+            }
+
             //set real user w/ real data
             _auction.User = _dbUser;
      
@@ -66,15 +73,10 @@ namespace TstDB_API.Controllers
             }
             catch (Exception ex)
             {
-                var errorMessage = new
-                {
-                    msg = ex.Message,
-                    ie = ex.InnerException
-                };
-                return Request.CreateResponse(HttpStatusCode.Forbidden, errorMessage);
+                return BadRequest(ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Ok();
         }
     }
 }
