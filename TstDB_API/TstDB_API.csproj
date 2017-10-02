@@ -178,13 +178,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\DBContext.cs" />
     <Compile Include="Dto\AuctionDTO.cs" />
+    <Compile Include="Dto\AuctionUserDTO.cs" />
     <Compile Include="Dto\UserDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709291332311_Initial.cs" />
-    <Compile Include="Migrations\201709291332311_Initial.Designer.cs">
-      <DependentUpon>201709291332311_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201710020959503_Initial.cs" />
+    <Compile Include="Migrations\201710020959503_Initial.Designer.cs">
+      <DependentUpon>201710020959503_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710021002209_AddUserNameToUserTable.cs" />
+    <Compile Include="Migrations\201710021002209_AddUserNameToUserTable.Designer.cs">
+      <DependentUpon>201710021002209_AddUserNameToUserTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auction.cs" />
@@ -250,8 +255,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709291332311_Initial.resx">
-      <DependentUpon>201709291332311_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710020959503_Initial.resx">
+      <DependentUpon>201710020959503_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021002209_AddUserNameToUserTable.resx">
+      <DependentUpon>201710021002209_AddUserNameToUserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

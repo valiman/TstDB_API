@@ -18,6 +18,7 @@ namespace TstDB_API.Migrations
 
         protected override void Seed(TstDB_API.DAL.DBContext context)
         {
+            /*
             //Create Id_User
             var IdUser_One = new IdentityUser("KniX");
             var IdUser_Two = new IdentityUser("isSoCoool");
@@ -50,6 +51,7 @@ namespace TstDB_API.Migrations
             var user_One = new User()
             {
                 Id_IdentityUser = IdUser_One.Id,
+                UserName = IdUser_One.UserName,
                 CreationDate = DateTime.Now,
                 Auctions = new List<Auction> { auction_One }
             };
@@ -57,6 +59,7 @@ namespace TstDB_API.Migrations
             var user_Two = new User()
             {
                 Id_IdentityUser = IdUser_Two.Id,
+                UserName = IdUser_Two.UserName,
                 CreationDate = DateTime.Now,
                 Auctions = new List<Auction> { auction_Two }
             };
@@ -68,18 +71,7 @@ namespace TstDB_API.Migrations
 
             //Save to db
             context.SaveChanges();
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            */
         }
     }
 }

@@ -14,6 +14,7 @@ namespace TstDB_API.Models
     {
         [Key]
         public string Id_IdentityUser { get; set; }
+        public string UserName { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime CreationDate { get; set; }
         public virtual List<Auction> Auctions { get; set; }

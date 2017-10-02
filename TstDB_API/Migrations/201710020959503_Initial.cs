@@ -27,6 +27,7 @@ namespace TstDB_API.Migrations
                 c => new
                     {
                         Id_IdentityUser = c.String(nullable: false, maxLength: 128),
+                        UserName = c.String(),
                         CreationDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                     })
                 .PrimaryKey(t => t.Id_IdentityUser);

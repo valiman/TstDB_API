@@ -22,7 +22,7 @@ namespace TstDB_API.Controllers
         public HttpResponseMessage GetAuctions()
         {
             var auctions = dbC.Auction
-                .Include(o => o.User) //o.User will be UserDTO: we tell linq to convert Objects to DtoObjects in Select, the type of this object will be dictated in the DtoClass
+                .Include(o => o.User)
                 .Select(Mapper.Map<Auction, Dto.AuctionDTO>)
                 .ToList();
 
@@ -33,7 +33,7 @@ namespace TstDB_API.Controllers
         [Route("api/Auction/GetUsers")]
         public HttpResponseMessage GetUsers()
         {
-            var users = dbC.User.Include(o => o.Auctions).Select(Mapper.Map<User, Dto.UserDTO>).ToList();
+            var users = dbC.User.Select(Mapper.Map<User, Dto.UserDTO>).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, users);
         }
