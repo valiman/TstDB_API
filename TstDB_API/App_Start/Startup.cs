@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
@@ -15,11 +16,12 @@ namespace TstDB_API.App_Start
     {
         public void Configuration(IAppBuilder app)
         {
+            //Specific order
             ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
+            app.UseCors(CorsOptions.AllowAll);
         }
 
         public void ConfigureOAuth(IAppBuilder app)
