@@ -13,11 +13,13 @@ using System.Data.Entity.Migrations;
 
 namespace TstDB_API.Controllers
 {
+    [Authorize]
     public class AuctionController : ApiController
     {
         DBContext dbC = new DBContext();
 
         //Returns auctions only.
+        [AllowAnonymous]
         [Route("api/Auction/GetAuctions")]
         public IHttpActionResult GetAuctions()
         {

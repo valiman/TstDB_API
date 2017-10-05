@@ -7,13 +7,13 @@ namespace TstDB_API.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddUserNameToUserTable : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUserNameToUserTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710021002209_AddUserNameToUserTable"; }
+            get { return "201710041559462_Initial"; }
         }
         
         string IMigrationMetadata.Source
