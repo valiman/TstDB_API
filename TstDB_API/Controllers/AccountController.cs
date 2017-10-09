@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using TstDB_API.DAL;
 using TstDB_API.Models;
@@ -40,6 +41,30 @@ namespace TstDB_API.Controllers
             }
 
             return Ok();
+        }
+
+        // POST api/Account/Register
+        [Authorize]
+        [Route("GetUserData")]
+        public IHttpActionResult GetUserData()
+        {
+            //var userId = User.Identity.GetUserId();
+            //var user = dbc.FindUser.Single(o => o.Id == userId);
+            //var auctions = dbC.Auction.Where(o => o.User.Id_IdentityUser == user.Id_IdentityUser).ToList();
+
+
+
+            //user.Auctions = auctions;
+            /*
+            var user = dbc.GetUser();
+
+            if (user == null)
+            {
+                return BadRequest("User could no be found.");
+            }
+            */
+            var user = dbc.GetUser();
+            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)

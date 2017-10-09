@@ -19,6 +19,5 @@ namespace TstDB_API.Models
         public DateTime EndDate { get; set; }
         public double BidPrice { get; set; }
         public double BuyoutPrice { get; set; }
-        public User User { get; set; }
     }
 }

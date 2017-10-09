@@ -3,9 +3,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 using TstDB_API.Models;
+using System.Linq.Expressions;
 
 namespace TstDB_API.DAL
 {
@@ -35,7 +37,7 @@ namespace TstDB_API.DAL
                 var user = new User()
                 {
                     CreationDate = DateTime.Now,
-                    Id_IdentityUser = idUser.Id,
+                    Id = idUser.Id,
                     UserName = idUser.UserName
                 };
 
@@ -49,6 +51,14 @@ namespace TstDB_API.DAL
         public async Task<IdentityUser> FindUser(string userName, string password)
         {
             IdentityUser user = await _userManager.FindAsync(userName, password);
+
+            return user;
+        }
+        
+        public User GetUser()
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var user = _ctx.User.Include(o => o.).Single(o => o.Id == userId);
 
             return user;
         }

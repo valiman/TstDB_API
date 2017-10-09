@@ -18,14 +18,12 @@ namespace TstDB_API.Migrations
 
         protected override void Seed(TstDB_API.DAL.DBContext context)
         {
-            /*
             //Create Id_User
             var IdUser_One = new IdentityUser("KniX");
             var IdUser_Two = new IdentityUser("isSoCoool");
 
             context.Users.AddOrUpdate(IdUser_One);
             context.Users.AddOrUpdate(IdUser_Two);
-            //
 
             //Create Auction
             var auction_One = new Auction()
@@ -50,7 +48,7 @@ namespace TstDB_API.Migrations
             //Create User
             var user_One = new User()
             {
-                Id_IdentityUser = IdUser_One.Id,
+                Id = IdUser_One.Id,
                 UserName = IdUser_One.UserName,
                 CreationDate = DateTime.Now,
                 Auctions = new List<Auction> { auction_One }
@@ -58,7 +56,7 @@ namespace TstDB_API.Migrations
 
             var user_Two = new User()
             {
-                Id_IdentityUser = IdUser_Two.Id,
+                Id = IdUser_Two.Id,
                 UserName = IdUser_Two.UserName,
                 CreationDate = DateTime.Now,
                 Auctions = new List<Auction> { auction_Two }
@@ -71,7 +69,6 @@ namespace TstDB_API.Migrations
 
             //Save to db
             context.SaveChanges();
-            */
         }
     }
 }

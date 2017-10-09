@@ -6,10 +6,14 @@ using System.Net.Http;
 using System.Web.Http;
 using TstDB_API.DAL;
 using System.Data.Entity; //enables IQueryable for include in the dbContext
-using TstDB_API.Models;
+//using TstDB_API.Models;
 using AutoMapper;
 using Newtonsoft.Json.Linq;
 using System.Data.Entity.Migrations;
+using System.Web.Routing;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
+using TstDB_API.Models;
 
 namespace TstDB_API.Controllers
 {
@@ -18,6 +22,7 @@ namespace TstDB_API.Controllers
     {
         DBContext dbC = new DBContext();
 
+        /*
         //Returns auctions only.
         [AllowAnonymous]
         [Route("api/Auction/GetAuctions")]
@@ -30,7 +35,8 @@ namespace TstDB_API.Controllers
 
             return Ok(auctions);
         }
-
+        */
+            
         //Returns users & auctions.
         [Route("api/Auction/GetUsers")]
         public IHttpActionResult GetUsers()
@@ -41,32 +47,42 @@ namespace TstDB_API.Controllers
         }
 
         //These post calls have to be token-authenticated.
+        [Authorize]
         [Route("api/Auction/CreateAuction")]
         public IHttpActionResult CreateAuction([FromBody]JObject data)
         {
-            User _user = data["User"].ToObject<User>();
+            //We use the User that is provided by the ApiController (principal)
+            //User _user = data["User"].ToObject<User>();
+            var userId = User.Identity.GetUserId();
             Auction _auction = data["Auction"].ToObject<Auction>();
 
             //check if either object is null
-            if (_user == null || _auction == null)
+            if (_auction == null || userId == null)
             {
                 var message = "Either user or auction is missing.";
                 return BadRequest(message);
             }
 
             //get real user
-            var _dbUser = dbC.User.FirstOrDefault(o => o.Id_IdentityUser == _user.Id_IdentityUser);
-
-            if (_dbUser == null)
+            //check on Username instead of identity
+            var _user = dbC.User.Include(o=>o.Auctions).FirstOrDefault(o => o.Id == userId);
+            
+            if (_user == null)
             {
                 var message = "User identity could not be found.";
                 return BadRequest(message);
             }
+            
+            //debug
+            if (_user.Auctions == null)
+            {
+                return BadRequest("auctions array is null.");
+            }
+            
+            //add auction to user
+            _user.Auctions.Add(_auction); //teh fuq
 
-            //set real user w/ real data
-            _auction.User = _dbUser;
-     
-            //add
+            //add auction to table.
             dbC.Auction.Add(_auction);
             
             try
@@ -78,7 +94,7 @@ namespace TstDB_API.Controllers
                 return BadRequest(ex.Message);
             }
 
-            return Ok();
+            return Ok("Auction created.");
         }
     }
 }

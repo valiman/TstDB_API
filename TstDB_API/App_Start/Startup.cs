@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,12 @@ namespace TstDB_API.App_Start
         public void Configuration(IAppBuilder app)
         {
             //Specific order
+            app.UseCors(CorsOptions.AllowAll); //Allows cors; good for api. bad for main-page. Must precede any defined endpoints.
             ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
+
             WebApiConfig.Register(config);
             app.UseWebApi(config);
-            app.UseCors(CorsOptions.AllowAll);
         }
 
         public void ConfigureOAuth(IAppBuilder app)

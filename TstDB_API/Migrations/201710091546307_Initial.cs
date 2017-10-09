@@ -16,21 +16,11 @@ namespace TstDB_API.Migrations
                         EndDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         BidPrice = c.Double(nullable: false),
                         BuyoutPrice = c.Double(nullable: false),
-                        User_Id_IdentityUser = c.String(maxLength: 128),
+                        User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.User_Id_IdentityUser)
-                .Index(t => t.User_Id_IdentityUser);
-            
-            CreateTable(
-                "dbo.Users",
-                c => new
-                    {
-                        Id_IdentityUser = c.String(nullable: false, maxLength: 128),
-                        UserName = c.String(),
-                        CreationDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                    })
-                .PrimaryKey(t => t.Id_IdentityUser);
+                .ForeignKey("dbo.Users", t => t.User_Id)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -54,6 +44,16 @@ namespace TstDB_API.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        UserName = c.String(),
+                        CreationDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -107,21 +107,21 @@ namespace TstDB_API.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Auctions", "User_Id", "dbo.Users");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Auctions", "User_Id_IdentityUser", "dbo.Users");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Auctions", new[] { "User_Id_IdentityUser" });
+            DropIndex("dbo.Auctions", new[] { "User_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Users");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Users");
             DropTable("dbo.Auctions");
         }
     }

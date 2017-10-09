@@ -17,12 +17,13 @@ namespace TstDB_API.DAL
 
         public DBContext()
         {
+            Configuration.LazyLoadingEnabled = false;
+            //Configuration.ProxyCreationEnabled = false;//xref probs fix, wont include next object :(
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            Configuration.LazyLoadingEnabled = false;
             //modelBuilder.Entity<User>().HasMany<Auction>(c => c.Auctions).WithRequired(c => c.User).WillCascadeOnDelete(true); //add key here.
         }
     }
