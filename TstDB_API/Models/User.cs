@@ -17,6 +17,7 @@ namespace TstDB_API.Models
         public string UserName { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime CreationDate { get; set; }
+        public double Rating { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }
     }
 }

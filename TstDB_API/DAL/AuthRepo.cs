@@ -7,7 +7,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 using TstDB_API.Models;
-using System.Linq.Expressions;
+using System.Data.Entity;
 
 namespace TstDB_API.DAL
 {
@@ -58,7 +58,7 @@ namespace TstDB_API.DAL
         public User GetUser()
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
-            var user = _ctx.User.Include(o => o.).Single(o => o.Id == userId);
+            var user = _ctx.User.Include(o => o.Auctions).Single(o => o.Id == userId);
 
             return user;
         }

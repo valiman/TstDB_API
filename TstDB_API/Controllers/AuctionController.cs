@@ -14,6 +14,7 @@ using System.Web.Routing;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using TstDB_API.Models;
+using TstDB_API.Dto;
 
 namespace TstDB_API.Controllers
 {
@@ -21,28 +22,24 @@ namespace TstDB_API.Controllers
     public class AuctionController : ApiController
     {
         DBContext dbC = new DBContext();
-
-        /*
+        
         //Returns auctions only.
         [AllowAnonymous]
         [Route("api/Auction/GetAuctions")]
         public IHttpActionResult GetAuctions()
         {
-            var auctions = dbC.Auction
-                .Include(o => o.User)
-                .Select(Mapper.Map<Auction, Dto.AuctionDTO>)
-                .ToList();
-
+            //Due to tables being bound in a way to avoid cross ref we have to
+            //work data backwards. :/ fix dis
+            var auctions = dbC.User.Include(o => o.Auctions).Where(a => a.Auctions.Count > 0).ToList();
+            
             return Ok(auctions);
         }
-        */
             
         //Returns users & auctions.
         [Route("api/Auction/GetUsers")]
         public IHttpActionResult GetUsers()
         {
-            var users = dbC.User.Select(Mapper.Map<User, Dto.UserDTO>).ToList();
-
+            var users = dbC.User.Select(Mapper.Map<User, UserDTO>).ToList();
             return Ok(users);
         }
 
@@ -64,19 +61,12 @@ namespace TstDB_API.Controllers
             }
 
             //get real user
-            //check on Username instead of identity
-            var _user = dbC.User.Include(o=>o.Auctions).FirstOrDefault(o => o.Id == userId);
+            var _user = dbC.User.Include(o => o.Auctions).FirstOrDefault(o => o.Id == userId);
             
             if (_user == null)
             {
                 var message = "User identity could not be found.";
                 return BadRequest(message);
-            }
-            
-            //debug
-            if (_user.Auctions == null)
-            {
-                return BadRequest("auctions array is null.");
             }
             
             //add auction to user

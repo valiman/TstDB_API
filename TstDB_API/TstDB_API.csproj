@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201710091546307_Initial.Designer.cs">
       <DependentUpon>201710091546307_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131342108_AddRatingToUser.cs" />
+    <Compile Include="Migrations\201710131342108_AddRatingToUser.Designer.cs">
+      <DependentUpon>201710131342108_AddRatingToUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auction.cs" />
     <Compile Include="Models\User.cs" />
@@ -282,6 +286,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710091546307_Initial.resx">
       <DependentUpon>201710091546307_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131342108_AddRatingToUser.resx">
+      <DependentUpon>201710131342108_AddRatingToUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

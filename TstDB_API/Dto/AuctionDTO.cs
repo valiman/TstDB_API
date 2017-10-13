@@ -12,6 +12,6 @@ namespace TstDB_API.Dto
         public DateTime EndDate { get; set; }
         public double BidPrice { get; set; }
         public double BuyoutPrice { get; set; }
-        public AuctionUserDTO User { get; set; }
+        public string User_Id { get; set; }
     }
 }

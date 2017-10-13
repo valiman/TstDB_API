@@ -45,24 +45,9 @@ namespace TstDB_API.Controllers
 
         // POST api/Account/Register
         [Authorize]
-        [Route("GetUserData")]
+        //[Route("GetUserData")]
         public IHttpActionResult GetUserData()
         {
-            //var userId = User.Identity.GetUserId();
-            //var user = dbc.FindUser.Single(o => o.Id == userId);
-            //var auctions = dbC.Auction.Where(o => o.User.Id_IdentityUser == user.Id_IdentityUser).ToList();
-
-
-
-            //user.Auctions = auctions;
-            /*
-            var user = dbc.GetUser();
-
-            if (user == null)
-            {
-                return BadRequest("User could no be found.");
-            }
-            */
             var user = dbc.GetUser();
             return Ok(user);
         }

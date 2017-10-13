@@ -51,7 +51,8 @@ namespace TstDB_API.Migrations
                 Id = IdUser_One.Id,
                 UserName = IdUser_One.UserName,
                 CreationDate = DateTime.Now,
-                Auctions = new List<Auction> { auction_One }
+                Auctions = new List<Auction> { auction_One },
+                Rating = 0
             };
 
             var user_Two = new User()
@@ -59,7 +60,8 @@ namespace TstDB_API.Migrations
                 Id = IdUser_Two.Id,
                 UserName = IdUser_Two.UserName,
                 CreationDate = DateTime.Now,
-                Auctions = new List<Auction> { auction_Two }
+                Auctions = new List<Auction> { auction_Two },
+                Rating = 0
             };
 
             context.User.AddOrUpdate(user_One);
