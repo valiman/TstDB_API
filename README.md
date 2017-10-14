@@ -18,9 +18,5 @@ Database &amp; API service for StreamAuctioneer
         header: Authorization:  Bearer <token>
     User <- (resource) Resource Server
         returns valid resource if all ok!
-        
-### Oauth:
-    OWIN middleware component that handles the details of OAuth2
-
 ### Note: 
     (HTTP Response) You must use HTTPS to provide transport layer security.
